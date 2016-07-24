@@ -145,7 +145,7 @@ function EWD_US_Display_Slider($atts, $content = null) {
 					$return_string .= "</div>";
 					$return_string .= "</div>";
 				}
-				else {$return_string .= '<img src="' . $Image_URL . '" alt="' . $Title . '">';}
+				else {$return_string .= '<div class="slideImg" style="background-image: url(' . $Image_URL . ')""></div>';}
 				$return_string .= '<div class="slideText">';
 					$return_string .= '<div class="slideTitle">' . $Title . '</div>';
 					$return_string .= '<div class="clear"></div>';
@@ -181,8 +181,8 @@ function EWD_US_Display_Slider($atts, $content = null) {
 	if($Selected_Arrow == 'None'){
 		$Selected_Arrow = '';
 	}
-	$return_string .= ' <div class="nav-arrow" id="left"><div class="ewd-us-arrow-div ' . $Background_Class . '"><div class="ewd-slider-icon us-arrow" id="left">' . $Selected_Arrow . '</div></div></div> <!-- nav arrow -->';
-	$return_string .= ' <div class="nav-arrow" id="right"><div class="ewd-us-arrow-div ' . $Background_Class . '"><div class="ewd-slider-icon us-arrow"  id="right">' . chr(ord($Selected_Arrow)+1) . '</div></div></div> <!-- nav arrow -->';
+	$return_string .= ' <div class="nav-arrow" id="left"><div class="ewd-us-arrow-div ' . $Background_Class . '"><div class="ewd-slider-icon us-arrow" id="left"><span class="ion-chevron-left"></span></div></div></div> <!-- nav arrow -->';
+	$return_string .= ' <div class="nav-arrow" id="right"><div class="ewd-us-arrow-div ' . $Background_Class . '"><div class="ewd-slider-icon us-arrow"  id="right"><span class="ion-chevron-right"></span></div></div></div> <!-- nav arrow -->';
 	$return_string .= '</div> <!-- slider -->';
 	if ($Slide_Indicators == "Dots") {$return_string .= '<div class="ewd-slider-control" id=""><div class="ewd-slider-control-button-list"></div></div>';}
 	if ($Slide_Indicators == "Thumbnails") {
