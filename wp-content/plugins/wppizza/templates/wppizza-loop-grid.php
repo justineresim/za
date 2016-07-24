@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;/*Exit if accessed directly*/
 ?>
 <?php if(!is_single() && !isset($noheader) && $termDetails && $the_query->found_posts>0){ /*exclude header if set or <=0 posts*/?>
 	<header id="<?php echo $post_type ?>-header-<?php echo $termSlug ?>-<?php echo $categoryId ?>" class="<?php echo $headerclasses ?>">
-		<h1 class="<?php echo $headerclassesh1 ?>"><?php echo $termDetails->name ?></h1>
+		<h2 class="<?php echo $headerclassesh1 ?>"><?php echo $termDetails->name ?></h2>
 		<?php if ( $termDetails->description!='' ) :?>
 		<div class="entry-meta <?php echo $post_type ?>-header-meta"><?php echo $termDetails->description; ?></div>
 		<?php endif; ?>
@@ -136,7 +136,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;/*Exit if accessed directly*/
 		[title]
 **************************************************/
 ?>
-	<h2<?php echo $clickTriggerId ?> class="<?php echo $post_type ?>-article-title<?php echo $clickTriggerClass ?>"><?php echo $postTitle ?>
+	<h3<?php echo $clickTriggerId ?> class="<?php echo $post_type ?>-article-title<?php echo $clickTriggerClass ?>"><?php echo $postTitle ?>
 
 <?php
 /*************************************************
@@ -156,7 +156,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;/*Exit if accessed directly*/
 	do_action('wppizza_loop_inside_after_additives', $postId, $options, $termSlug, $categoryId);
 ?>
 
-	</h2>
+	</h3>
 <?php
 	do_action('wppizza_loop_inside_after_title', $postId, $options, $termSlug, $categoryId);
 ?>
@@ -197,6 +197,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;/*Exit if accessed directly*/
 ?>
 
 <?php
+
+/*********************************************
+		[description]
+**********************************************/
+?>
+		<div class="<?php echo $post_type ?>-article-info">
+		<?php
+			the_content();
+		?>
+		</div>
+<?php
+
 /*********************************************
 		[prices and currency symbols]
 **********************************************/
@@ -208,49 +220,38 @@ if ( ! defined( 'ABSPATH' ) ) exit;/*Exit if accessed directly*/
 		<div id="<?php echo $post_type ?>-article-tiers-<?php echo $postId ?>" class="<?php echo $post_type ?>-article-tiers <?php echo $post_type ?>-article-prices-<?php echo $meta['sizes']; ?>">
 
 		<?php if(count($options['sizes'][$meta['sizes']])>0){ ?>
-		<ul>
+		<div>
 		   	<?php if(!isset($hideCurrencySymbol) && isset($currencyLeft)){?>
-		   		<li class='<?php echo $post_type ?>-article-price-currency <?php echo $post_type ?>-article-currency-left'><?php echo $currency ?></li>
+		   		<div class='<?php echo $post_type ?>-article-price-currency <?php echo $post_type ?>-article-currency-left'><?php echo $currency ?></div>
 		   	<?php } ?>
 
-		<li id="<?php echo $post_type ?>-article-prices-<?php echo $postId ?>" class="<?php echo $post_type ?>-article-prices">
-		<ul>
+		<div id="<?php echo $post_type ?>-article-prices-<?php echo $postId ?>" class="<?php echo $post_type ?>-article-prices">
 	   	<?php
 	   		foreach($meta['prices'] as $k=>$v){
 	   			/**allow override using wppizza_filter_loop_meta filter above*/
 	   			$lbl=empty($meta['size_label'][$k]) ? $options['sizes'][$meta['sizes']][$k]['lbl'] : $meta['size_label'][$k];
-	   	?>
-		   		<li id='<?php echo $post_type."-".$postId."-".$meta['sizes']."-".$k ?>' class='<?php echo $post_type ?>-article-price <?php echo $post_type ?>-article-price-<?php echo $meta['sizes']; ?>-<?php echo $k; ?> <?php echo $priceClass ?>' <?php echo $priceTitle ?>>
+	   	?>		
+		   		<button id='<?php echo $post_type."-".$postId."-".$meta['sizes']."-".$k ?>' class='g-btn g-btn-tertiary g-btn-sm <?php echo $post_type ?>-article-price <?php echo $post_type ?>-article-price-<?php echo $meta['sizes']; ?>-<?php echo $k; ?> <?php echo $priceClass ?>' <?php echo $priceTitle ?>>
 		    		<span><?php if($options['layout']['show_currency_with_price']==1){echo $currency." ";} ?><?php echo wppizza_output_format_price($meta['prices'][$k],$optionsDecimals)?><?php if($options['layout']['show_currency_with_price']==2){echo " ".$currency;} ?></span>
 		    		<?php if(!isset($hidePricetier) || count($options['sizes'][$meta['sizes']])>1){ ?>
-		    		<div class='<?php echo $post_type ?>-article-price-lbl<?php echo $hideCartIcon?>'><?php echo $lbl?></div>
+		    		<span><?php echo $lbl?></span>
 		   			<?php } ?>
-		   		</li>
+		   		</button>
+		   		
 		   	<?php } ?>
-		</ul>
-		</li>
+		</div>
 		   	<?php if(!isset($hideCurrencySymbol) && !isset($currencyLeft)){?>
-		   		<li class='<?php echo $post_type ?>-article-price-currency'><?php echo $currency ?></li>
+		   		<div class='<?php echo $post_type ?>-article-price-currency'><?php echo $currency ?></div>
 	   		<?php } ?>
 		<?php } ?>
 
-		</ul>
+		</div>
 		</div>
 <?php } ?>
 <?php
 	/*ADDED IN VERSION 2.8.5*/
 	do_action('wppizza_loop_inside_after_prices', $postId, $options, $termSlug, $categoryId);
 ?>
-<?php
-/*********************************************
-		[description]
-**********************************************/
-?>
-		<div class="<?php echo $post_type ?>-article-info">
-		<?php
-			the_content();
-		?>
-		</div>
 <?php
 	/*ADDED IN VERSION 2.8.5*/
 	do_action('wppizza_loop_inside_after_content', $postId, $options, $termSlug, $categoryId);
