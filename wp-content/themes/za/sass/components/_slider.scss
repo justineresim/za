@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Slider
+   ========================================================================== */
+
+#timerBar{
+	display: none;
+}
+
+body.home{
+	.ewd-slider-section, .wrapper, .slider, .slider-window, .ewd-slide{
+		height: 100% !important;
+	}	
+	.slider .ewd-slide img, .slideImg{
+		height: 100%;
+		width: auto;
+		max-width: none;
+	}
+	.slideImg{
+		width: 100%;
+    	position: absolute;
+    	background-size: cover;
+    	background-position: center center;
+	}
+	.slider .nav-arrow {
+	    top: 0;
+	    text-align: right;
+	    &#left{
+	    	text-align: left;
+	    }
+	}
+	.ewd-slider-control {
+	    position: absolute;
+	    bottom: 100px;
+	    width: 100%;
+	}
+	.ewd-slider-control-click {
+    	background: #fff;
+    }
+	.ewd-slide{
+		position: relative;
+		display: table;
+	    background: #000;
+		.slideText{
+			display: table-cell;
+			vertical-align: middle;
+			margin: 0;
+			float: none;
+			width: 100%;
+			padding-right: 20%;
+			padding-left: 20%;
+			padding-bottom: 100px;
+			> *{
+				padding: 0 50px;
+			}
+		}
+	}
+}
+
+
+
+    
+
+
