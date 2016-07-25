@@ -4,12 +4,12 @@
 
 /* ======================= Colours ======================== */
 
-$primary-1: #000;
+$primary-1: #1f1f1f;
 $primary-2: #222;
 $primary-3: #666;
 $primary-4: #bf721e;
 
-$grey-1: #000;
+$grey-1: #1f1f1f;
 $grey-2: #333;
 $grey-3: #b4b4b4;
 $grey-4: #ddd;
@@ -45,7 +45,7 @@ $link-color-secondary: #fff;
 $link-hover-color-secondary: darken(#fff, 5%);
 
 //Type
-$heading-font: 'Great Vibes', cursive;
+$heading-font: "Montserrat",Helvetica,Roboto,Arial,sans-serif;
 $body-font: "Montserrat",Helvetica,Roboto,Arial,sans-serif;
 $text-color: $grey-2;
 $text-color-light: $grey-3;

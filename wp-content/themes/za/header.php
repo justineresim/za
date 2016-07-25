@@ -5,8 +5,15 @@
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-        <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" rel="shortcut icon">
-        <link href="<?php echo get_template_directory_uri(); ?>/img/icons/touch.png" rel="apple-touch-icon-precomposed">
+        
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+		<link rel="icon" type="image/png" href="/img/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/img/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="/img/icons/manifest.json">
+		<link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#222222">
+		<link rel="shortcut icon" href="/img/icons/favicon.ico">
+		<meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">

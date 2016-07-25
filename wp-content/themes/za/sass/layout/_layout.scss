@@ -9,7 +9,7 @@
 	padding-right: 10px;
 	position: relative;
 	@media (min-width: 1200px) {
-		width: 1170px;
+		width: 1100px;
 	}
 	&:before, &:after {
 	    content: ' ';
@@ -19,14 +19,14 @@
 	    clear: both;
 	}
 	&.sm{
-		@media (min-width: 1200px) {
-			width: 500px;
+		@media (min-width: 700px) {
+			width: 700px;
 		}
 	}
 }
 
 main, aside.sidebar{
-	padding-bottom: 4em;
+	padding-bottom: 6em;
 }
 
 .container{
@@ -40,22 +40,3 @@ main, aside.sidebar{
 	}
 }
 
-.container.full-width{
-	aside.sidebar{
-		.sidebar-widget{
-			width: 48%;
-			float: left;
-			+ .sidebar-widget{
-				width: 48%;
-				float: right;
-			}
-		}
-		&:before, &:after {
-		    content: ' ';
-		    display: table;
-		}
-		&:after {
-		    clear: both;
-		}
-	}
-}

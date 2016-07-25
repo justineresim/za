@@ -7,5 +7,24 @@
 	padding: 2em 0;
 	a{
 		color: #fff;
+		text-decoration: none;
+	}
+	.social-icons{
+		font-size: 20px;
+		text-align: right;
+		a{
+			padding: 10px;
+			margin: 0 0 10px;
+		}
+	}
+	.contact-info{
+		a{
+			padding: 10px;
+			margin: 0 10px 0;
+			font-size: 14px;
+			span{
+				margin-right: 5px;
+			}
+		}
 	}
 }

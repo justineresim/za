@@ -9,16 +9,23 @@
 			?>
 
 			<div class="banner" style="background-image: url(<?php echo $feat_image;?>); background-size: cover; background-position: center center;">
-
 				<div class="container">
-
 					<h1><?php the_title(); ?></h1>
-
+					
+					<!-- <?php echo do_shortcode("[wppizza type='openingtimes']"); ?> -->
 				</div>
-
 			</div>
 
-			<div class="container">
+			<div class="secondary-menu">
+				<div class="container">
+					<a class="active" data-el="#salad">Salads</a>
+					<a data-el="#pizza">Pizza</a>
+					<a data-el="#drinks">Drinks</a>
+					<a class="g-pull-right" data-el="#cart">My Cart <?php echo do_shortcode("[wppizza type='totals' value='items']"); ?></a>
+				</div>
+			</div>
+
+			<div class="container sm">
 
 			<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
@@ -49,7 +56,5 @@
 		</section>
 		<!-- /section -->
 	</main>
-
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>
