@@ -977,10 +977,6 @@ body.home header.header {
 /* ==========================================================================
    Slider
    ========================================================================== */
-#timerBar {
-  display: none;
-}
-
 .slider .ewd-slide .slideText .slideTitle {
   letter-spacing: normal;
   text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.7);
@@ -1106,14 +1102,15 @@ h1 {
 
 h2 {
   font-size: 2.9em;
+  text-transform: none;
 }
 
 h3 {
-  font-size: 1.7em;
+  font-size: 1.6em;
 }
 
 h4 {
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 h5 {
