@@ -38,6 +38,11 @@ body.menu{
 	}
 }
 
+.g-item-price{
+	display: inline-block;
+	margin: 0 5px;
+}
+
 .secondary-menu{
 	background: $primary-4;
 	.wppizza-totals{
@@ -73,6 +78,7 @@ body.menu{
 
 .tab-content{
 	display: none;
+	pointer-events: none;
 	&.active{
 		display: block;
 	}

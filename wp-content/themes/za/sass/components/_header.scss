@@ -6,12 +6,22 @@ header.header{
 	background: $grey-1;
 	z-index: 2000;
 	height: 100px;
+	@media (max-width: $max-break-mobile) {
+		height: 70px;
+	}
 	.logo{
 		float: left;
 		height: 100px;
 		img{
 			height: 60px;
 			margin: 20px 0;
+		}
+		@media (max-width: $max-break-mobile) {
+			height: 70px;
+			img{
+				height: 30px;
+				margin: 20px 0;
+			}
 		}
 	}
 	.logo-black{
@@ -35,6 +45,10 @@ header.header{
 					line-height: 100px;
 					&:hover{
 						background: #000;
+					}
+					@media (max-width: $max-break-mobile) {
+						line-height: 70px;
+						padding: 0 15px;
 					}
 				}
 			}

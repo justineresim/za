@@ -231,12 +231,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;/*Exit if accessed directly*/
 	   			/**allow override using wppizza_filter_loop_meta filter above*/
 	   			$lbl=empty($meta['size_label'][$k]) ? $options['sizes'][$meta['sizes']][$k]['lbl'] : $meta['size_label'][$k];
 	   	?>		
-		   		<button id='<?php echo $post_type."-".$postId."-".$meta['sizes']."-".$k ?>' class='g-btn g-btn-tertiary g-btn-sm <?php echo $post_type ?>-article-price <?php echo $post_type ?>-article-price-<?php echo $meta['sizes']; ?>-<?php echo $k; ?> <?php echo $priceClass ?>' <?php echo $priceTitle ?>>
+		   		<span id='<?php echo $post_type."-".$postId."-".$meta['sizes']."-".$k ?>' class='h6 g-item-price <?php echo $post_type ?>-article-price <?php echo $post_type ?>-article-price-<?php echo $meta['sizes']; ?>-<?php echo $k; ?> <?php echo $priceClass ?>' <?php echo $priceTitle ?>>
 		    		<span><?php if($options['layout']['show_currency_with_price']==1){echo $currency." ";} ?><?php echo wppizza_output_format_price($meta['prices'][$k],$optionsDecimals)?><?php if($options['layout']['show_currency_with_price']==2){echo " ".$currency;} ?></span>
 		    		<?php if(!isset($hidePricetier) || count($options['sizes'][$meta['sizes']])>1){ ?>
 		    		<span><?php echo $lbl?></span>
 		   			<?php } ?>
-		   		</button>
+		   		</span>
 		   		
 		   	<?php } ?>
 		</div>

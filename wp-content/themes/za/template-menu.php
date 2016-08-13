@@ -21,7 +21,7 @@
 					<a class="active" data-el="#salad">Salads</a>
 					<a data-el="#pizza">Pizza</a>
 					<a data-el="#drinks">Drinks</a>
-					<a class="g-pull-right" data-el="#cart">My Cart <?php echo do_shortcode("[wppizza type='totals' value='items']"); ?></a>
+					<!-- <a class="g-pull-right" data-el="#cart">My Cart <?php echo do_shortcode("[wppizza type='totals' value='items']"); ?></a> -->
 				</div>
 			</div>
 
