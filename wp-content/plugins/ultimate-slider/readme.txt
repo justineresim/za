@@ -2,7 +2,7 @@
 Contributors: Rustaurius, EtoileWebDesign
 Tags: slider, responsive slider, slide, carousel, carousel slider, image slider, photo slider, banner, slide show, slider plugin, slider effects, jquery slider, css slider, html5 slider, slider shortcode, slide shortcode, gallery slider, page slider, full width slider, full-width slider, fullscreen slider, content slider, slider layers, slider buttons, slider image, wordpress slider, wp slider, woocommerce slider, upcp slider, product slider, slider transition, featured image slider, vertical slider, horizontal slider, smooth slider, easy slider, simple slider, custom slider, rotating slider, rotating banner, modern slider, sleek slider, slider custom post type, custom post type slider, slide custom post type, best slider, best slider plugin
 Requires at least: 3.5.0
-Tested up to: 4.5
+Tested up to: 4.6
 License: GPLv3
 License URI:http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,7 +12,15 @@ Add a responsive slider to any page via shortcode. Multiple slide effects. Produ
 
 <a href='http://www.etoilewebdesign.com/ultimate-slider/'>Slider Demo Website</a>
 
+[youtube https://www.youtube.com/watch?v=npvdU8uBBKw]
+
 Ultimate Slider is an easy-to-use slider plugin that lets you add a clean, modern, responsive slider to any page on your WordPress site using a simple slider shortcode. It includes multiple different slide transition effects to make your slider unique. There are also various other slider customization options, including slider autoplay and the ability to set the slider delay and slide interval times. There is even a custom CSS input that lets you further modify the slider styling, so you can get it looking and working exactly as you need.
+
+`
+[ultimate-slider]
+`
+
+Simply insert the shortcode above into any page to display your slider. 
 
 The Ultimate Slider plugin fully integrates with both the <a href="https://wordpress.org/plugins/ultimate-product-catalogue/">Ultimate Product Catalog</a> plugin and WooCommerce. This means that you can choose to have a slide's content and image pulled directly from a specific product from either the Ultimate Product Catalog or WooCommerce. Alternatively, you can choose to just type in the slide content and set either the featured image or the first image in your post as the slide image.
 
@@ -49,6 +57,8 @@ Each slide has a customizable title and text area. You can also add custom links
 = Shortcode =
 
 * [ultimate-slider]: displays all slides that you've created, can accept the attributes 'category' (set to a category's slug), to display only slides from a certain category, and 'slider_type' to display WooCommerce products without having to create new individual slides for them
+
+For more information, please visit our <a href="http://www.etoilewebdesign.com/plugins/ultimate-slider/" target="_blank">WordPress slider plugin</a> page.
 
 --------------------------------------------------------------
 
@@ -156,6 +166,17 @@ Yes. When creating or editing a slide, there are two options in the "Content" ta
 --------------------------------------------------------------
 
 == Changelog ==
+= 1.0.4 =
+- Added extra information onto the slides overview page, including a thumbnail, to make it easier to know slide information at a glance
+- Added the shortcode to include a particular slide category on the categories page
+
+= 1.0.3 =
+- Added in premium options to control what gets shown on mobile, the mobile aspect ratio and the ability to have an entire slide link to the slide post
+- Fixed a conflict with our new lightbox plugin
+
+= 1.0.2 =
+- CSS update to nest a class
+
 = 1.0.1 =
 - Minor CSS update for certain older themes
 
@@ -205,7 +226,7 @@ Yes. When creating or editing a slide, there are two options in the "Content" ta
 - Initial beta version. Please make comments/suggestions in the "Support" forum.
 
 
-
-
-
 == Upgrade Notice ==
+
+
+

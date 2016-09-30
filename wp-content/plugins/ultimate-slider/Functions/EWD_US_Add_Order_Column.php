@@ -1,6 +1,6 @@
 <?php 
 function EWD_US_Add_Admin_Columns($cols) {
-	$cols['menu_order'] = "Order";
+	$cols['us_menu_order'] = "Order";
 	return $cols;
 }
 add_action('manage_edit-ultimate_slider_columns', 'EWD_US_Add_Admin_Columns');
@@ -8,7 +8,7 @@ add_action('manage_edit-ultimate_slider_columns', 'EWD_US_Add_Admin_Columns');
 function EWD_US_Return_Admin_Columns($column){
 	global $post;
 	switch ($column) {
-		case 'menu_order':
+		case 'us_menu_order':
 			echo get_post_meta($post->ID, "EWD_US_Slide_Order", true);
 			break;
 		default:

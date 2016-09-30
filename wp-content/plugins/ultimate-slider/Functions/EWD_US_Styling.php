@@ -37,7 +37,7 @@ function EWD_US_Add_Modified_Styles() {
 	$StylesString .=".slider .nav-arrow .ewd-us-arrow-div { ";
 		$arrowBackgroundShape = get_option("EWD_us_Arrow_Background_Shape");
 		if($arrowBackgroundShape != 'None'){
-			if (get_option("EWD_us_Arrow_Background_Color") != "") {$StylesString .= "background:" . get_option("EWD_us_Arrow_Background_Color") . " !important;";}
+			if (get_option("EWD_us_Arrow_Background_Color") != "") {$StylesString .= "background:" . get_option("EWD_us_Arrow_Background_Color") . ";";}
 		}
 		else{
 			$StylesString .= "background: transparent !important;";

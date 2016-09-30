@@ -4,6 +4,8 @@ function EWD_US_Display_Slider($atts, $content = null) {
 	global $wpdb;
 	global $items_table_name;
 
+	$Hide_On_Mobile = get_option("EWD_US_Hide_On_Mobile");
+	$Mobile_Link_To_Full = get_option("EWD_US_Mobile_Link_To_Full");
 	$Carousel = get_option("EWD_US_Carousel");
 	$Carousel_Link_To_Full = get_option("EWD_US_Carousel_Link_To_Full");
 	$Slide_Indicators = get_option("EWD_US_Slide_Indicators");
@@ -18,6 +20,23 @@ function EWD_US_Display_Slider($atts, $content = null) {
 
 	if ($us_Arrow_Background_Shape != "None") {$Background_Class = "ewd-us-" . $us_Arrow_Background_Shape;}
 	else {$Background_Class = "";}
+
+	if (in_array("title", $Hide_On_Mobile)) {$Title_Mobile_Class = 'ewd-us-mobile-hide';}
+	else {$Title_Mobile_Class = "";}
+	if (in_array("body", $Hide_On_Mobile)) {$Body_Mobile_Class = 'ewd-us-mobile-hide';}
+	else {$Body_Mobile_Class = "";}
+	if (in_array("buttons", $Hide_On_Mobile)) {$Buttons_Mobile_Class = 'ewd-us-mobile-hide';}
+	else {$Buttons_Mobile_Class = "";}
+	if (in_array("arrows", $Hide_On_Mobile)) {
+		$Arrow_Mobile_Class = 'ewd-us-mobile-hide';
+		$Arrow_Div_Mobile_Class = 'ewd-us-mobile-arrow-hide';
+	}
+	else {
+		$Arrow_Mobile_Class = "";
+		$Arrow_Div_Mobile_Class = "";
+	}
+	if (in_array("thumbnails", $Hide_On_Mobile)) {$Thumbnails_Mobile_Class = 'ewd-us-mobile-hide';}
+	else {$Thumbnails_Mobile_Class = "";}
 
 	extract( shortcode_atts( array(
 		'posts' => '-1',
@@ -145,11 +164,11 @@ function EWD_US_Display_Slider($atts, $content = null) {
 					$return_string .= "</div>";
 					$return_string .= "</div>";
 				}
-				else {$return_string .= '<div class="slideImg" style="background-image: url(' . $Image_URL . ')""></div>';}
+				else {$return_string .= '<img src="' . $Image_URL . '" alt="' . $Title . '">';}
 				$return_string .= '<div class="slideText">';
-					$return_string .= '<div class="slideTitle">' . $Title . '</div>';
+					$return_string .= '<div class="slideTitle ' . $Title_Mobile_Class . '">' . $Title . '</div>';
 					$return_string .= '<div class="clear"></div>';
-					$return_string .= '<div class="slideExcerpt">' . $Content . '</div>';
+					$return_string .= '<div class="slideExcerpt ' . $Body_Mobile_Class . '">' . $Content . '</div>';
 					$return_string .= '<div class="clear"></div>';
 					$return_string .= '<ul class="slideButtons">';
 						foreach ($Buttons as $Button) {
@@ -160,13 +179,16 @@ function EWD_US_Display_Slider($atts, $content = null) {
 								else {$Target_Text = "";}
 							}
 							$return_string .= '<li>';
-							$return_string .= "<a class='ewd-us-slide-button' href='" . $Link . "' " . $Target_Text . ">" . strtoupper($Button['Text']) . "</a>";
+							$return_string .= "<a class='ewd-us-slide-button " . $Buttons_Mobile_Class . "' href='" . $Link . "' " . $Target_Text . ">" . strtoupper($Button['Text']) . "</a>";
 							$return_string .= '</li>';
 						}
 					$return_string .= '</ul>';
 				$return_string .= '</div> <!-- slideText -->';
 				if($Carousel == 'Yes' && $Carousel_Link_To_Full == 'Yes'){
 					$return_string .= '<a href="' . get_the_permalink() . '" class="carouselLinkToFull"></a>';
+				}
+				if($Mobile_Link_To_Full == "Yes"){
+					$return_string .= '<a href="' . get_the_permalink() . '" class="mobileLinkToFull"></a>';
 				}
 			$return_string .= '</li> <!-- ewd-slide -->';
 
@@ -181,14 +203,14 @@ function EWD_US_Display_Slider($atts, $content = null) {
 	if($Selected_Arrow == 'None'){
 		$Selected_Arrow = '';
 	}
-	$return_string .= ' <div class="nav-arrow" id="left"><div class="ewd-us-arrow-div ' . $Background_Class . '"><div class="ewd-slider-icon us-arrow" id="left"><span class="ion-chevron-left"></span></div></div></div> <!-- nav arrow -->';
-	$return_string .= ' <div class="nav-arrow" id="right"><div class="ewd-us-arrow-div ' . $Background_Class . '"><div class="ewd-slider-icon us-arrow"  id="right"><span class="ion-chevron-right"></span></div></div></div> <!-- nav arrow -->';
+	$return_string .= ' <div class="nav-arrow" id="left"><div class="ewd-us-arrow-div ' . $Background_Class . ' ' . $Arrow_Div_Mobile_Class . '"><div class="ewd-slider-icon us-arrow ' . $Arrow_Mobile_Class . '" id="left">' . $Selected_Arrow . '</div></div></div> <!-- nav arrow -->';
+	$return_string .= ' <div class="nav-arrow" id="right"><div class="ewd-us-arrow-div ' . $Background_Class . ' ' . $Arrow_Div_Mobile_Class . '"><div class="ewd-slider-icon us-arrow ' . $Arrow_Mobile_Class . '"  id="right">' . chr(ord($Selected_Arrow)+1) . '</div></div></div> <!-- nav arrow -->';
 	$return_string .= '</div> <!-- slider -->';
 	if ($Slide_Indicators == "Dots") {$return_string .= '<div class="ewd-slider-control" id=""><div class="ewd-slider-control-button-list"></div></div>';}
 	if ($Slide_Indicators == "Thumbnails") {
 		$return_string .= '<div class="ewd-slider-control"></div>';
 		foreach ($Slide_Previews as $Slide_Counter => $Image_URL) {
-			$return_string .= '<div class="ewd-slider-control-thumbnail" data-slidenumber="' . $Slide_Counter . '">';
+			$return_string .= '<div class="ewd-slider-control-thumbnail ' . $Thumbnails_Mobile_Class . '" data-slidenumber="' . $Slide_Counter . '">';
 			$return_string .= '<img src="' . $Image_URL . '" class="ewd-slider-control-thumbnail-img" />';
 			$return_string .= '</div>';
 		}
@@ -216,7 +238,7 @@ add_shortcode('ultimate-slider', 'EWD_US_Display_Slider');
 
 function EWD_US_Get_YouTube_ID($YouTube_URL) {
 	preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $YouTube_URL, $matches);
-	
+
 	return $matches[0];
 }
 

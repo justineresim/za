@@ -7,14 +7,14 @@ Author: Etoile Web Design
 Author URI: http://www.EtoileWebDesign.com/plugins/
 Terms and Conditions: http://www.etoilewebdesign.com/plugin-terms-and-conditions/
 Text Domain: EWD_US
-Version: 1.0.1
+Version: 1.0.4
 */
 
 global $ewd_us_message;
 global $US_Full_Version;
 global $EWD_US_Version;
 
-$EWD_US_Version = '1.0.0';
+$EWD_US_Version = '1.0.3';
 
 define( 'EWD_US_CD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EWD_US_CD_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -54,7 +54,7 @@ add_action( 'admin_enqueue_scripts', 'EWD_US_Make_Posts_Sortable', 10, 1 );
 
 add_action( 'wp_enqueue_scripts', 'EWD_US_Add_Stylesheet' );
 function EWD_US_Add_Stylesheet() {
-    wp_enqueue_style( 'main', plugins_url("ultimate-slider/css/main.css"));
+    wp_enqueue_style( 'ewd-us-main', plugins_url("ultimate-slider/css/main.css"));
     wp_enqueue_style( 'lightgallery', plugins_url("ultimate-slider/css/lightgallery.css"));
 }
 
@@ -68,6 +68,7 @@ function Add_EWD_US_FrontEnd_Scripts() {
     $Slide_Transition_Effect = get_option("EWD_US_Slide_Transition_Effect");
     $Transition_Time = get_option("EWD_US_Transition_Time");
     $Aspect_Ratio = get_option("EWD_US_Aspect_Ratio");
+    $Mobile_Aspect_Ratio = get_option("EWD_US_Mobile_Aspect_Ratio");
     $Carousel = get_option("EWD_US_Carousel");
     $Carousel_Columns = get_option("EWD_US_Carousel_Columns");
     $Carousel_Link_To_Full = get_option("EWD_US_Carousel_Link_To_Full");
@@ -76,13 +77,8 @@ function Add_EWD_US_FrontEnd_Scripts() {
     $Lightbox = get_option("EWD_US_Lightbox");
     $Timer_Bar = get_option("EWD_US_Timer_Bar");
 
-    if ($Aspect_Ratio == "3_1") {$Aspect_Fraction = .333333333;}
-    if ($Aspect_Ratio == "16_7") {$Aspect_Fraction = .444444444;}
-    if ($Aspect_Ratio == "2_1") {$Aspect_Fraction = .5;}
-    if ($Aspect_Ratio == "16_9") {$Aspect_Fraction = .5625;}
-    if ($Aspect_Ratio == "3_2") {$Aspect_Fraction = .666666666;}
-    if ($Aspect_Ratio == "4_3") {$Aspect_Fraction = .75;}
-    if ($Aspect_Ratio == "1_1") {$Aspect_Fraction = 1;}
+    $Aspect_Fraction = EWD_US_Get_Aspect_Fraction($Aspect_Ratio);
+    $Mobile_Aspect_Fraction = EWD_US_Get_Aspect_Fraction($Mobile_Aspect_Ratio);
 
     $Data_Array = array( 'autoplay_slideshow' => $Autoplay_Slideshow,
                         'autoplay_delay' => $Autoplay_Delay,
@@ -90,6 +86,7 @@ function Add_EWD_US_FrontEnd_Scripts() {
                         'slide_transition_effect' => $Slide_Transition_Effect,
                         'transition_time' => $Transition_Time,
                         'aspect_ratio' => $Aspect_Fraction,
+                        'mobile_aspect_ratio' => $Mobile_Aspect_Fraction,
                         'slider_carousel' => $Carousel,
                         'carousel_columns' => $Carousel_Columns,
                         'carousel_link_to_full' => $Carousel_Link_To_Full,
@@ -114,6 +111,18 @@ function Add_EWD_US_FrontEnd_Scripts() {
         wp_enqueue_script(  'lg-video', plugins_url('ultimate-slider/js/lg-video.js'), array('jquery', 'lightgallery'), true);
         wp_enqueue_script(  'lg-zoom', plugins_url('ultimate-slider/js/lg-zoom.js'), array('jquery', 'lightgallery'), true);
     }
+}
+
+function EWD_US_Get_Aspect_Fraction($Aspect_Ratio) {
+    if ($Aspect_Ratio == "3_1") {$Aspect_Fraction = .333333333;}
+    if ($Aspect_Ratio == "16_7") {$Aspect_Fraction = .444444444;}
+    if ($Aspect_Ratio == "2_1") {$Aspect_Fraction = .5;}
+    if ($Aspect_Ratio == "16_9") {$Aspect_Fraction = .5625;}
+    if ($Aspect_Ratio == "3_2") {$Aspect_Fraction = .666666666;}
+    if ($Aspect_Ratio == "4_3") {$Aspect_Fraction = .75;}
+    if ($Aspect_Ratio == "1_1") {$Aspect_Fraction = 1;}
+
+    return $Aspect_Fraction;
 }
 
 $US_Full_Version = get_option("EWD_US_Full_Version");
@@ -185,6 +194,7 @@ include "Functions/EWD_US_Widgets.php";
 include "Functions/Update_EWD_US_Admin_Databases.php";
 include "Functions/Update_EWD_US_Content.php";
 include "Functions/EWD_US_Styling.php";
+include "Functions/EWD_US_Add_Views_Column.php";
 
 include "Shortcodes/Display_Slider.php";
 
@@ -199,7 +209,6 @@ function Set_EWD_US_Options() {
     if (get_option("EWD_US_Autoplay_Slideshow") == "") {update_option("EWD_US_Autoplay_Slideshow", "Yes");}
     if (get_option("EWD_US_Autoplay_Delay") == "") {update_option("EWD_US_Autoplay_Delay", 6);}
     if (get_option("EWD_US_Autoplay_Interval") == "") {update_option("EWD_US_Autoplay_Interval", 4);}
-    if (get_option("EWD_US_Slide_Transition_Effect") == "") {update_option("EWD_US_Slide_Transition_Effect", "slide");}
     if (get_option("EWD_US_Transition_Time") == "") {update_option("EWD_US_Transition_Time", 1);}
     if (get_option("EWD_US_Aspect_Ratio") == "") {update_option("EWD_US_Aspect_Ratio", "16_7");}
     if (get_option("EWD_US_Carousel") == "") {update_option("EWD_US_Carousel", "No");}
@@ -210,6 +219,10 @@ function Set_EWD_US_Options() {
     if (get_option("EWD_US_Timer_Bar") == "") {update_option("EWD_US_Timer_Bar", "Top");}
     if (get_option("EWD_US_Slide_Indicators") == "") {update_option("EWD_US_Slide_Indicators", "Dots");}
     if (get_option("EWD_US_Link_Action") == "") {update_option("EWD_US_Link_Action", "Same");}
+    if (get_option("EWD_US_Slide_Transition_Effect") == "") {update_option("EWD_US_Slide_Transition_Effect", "slide");}
+    if (get_option("EWD_US_Mobile_Aspect_Ratio") == "") {update_option("EWD_US_Mobile_Aspect_Ratio", get_option("EWD_US_Aspect_Ratio"));}
+    if (get_option("EWD_US_Hide_On_Mobile") == "") {update_option("EWD_US_Hide_On_Mobile", array('body', 'buttons'));}
+    if (get_option("EWD_US_Mobile_Link_To_Full") == "") {update_option("EWD_US_Mobile_Link_To_Full", "No");}
     if (get_option("EWD_US_Add_Watermark") == "") {update_option("EWD_US_Add_Watermark", "No");}
     if (get_option("EWD_US_Title_Animate") == "") {update_option("EWD_US_Title_Animate", "None");}
     if (get_option("EWD_US_Lightbox") == "") {update_option("EWD_US_Lightbox", "No");}

@@ -16,6 +16,9 @@ $Slide_Indicators = get_option("EWD_US_Slide_Indicators");
 $Link_Action = get_option("EWD_US_Link_Action");
 
 $Slide_Transition_Effect = get_option("EWD_US_Slide_Transition_Effect");
+$Mobile_Aspect_Ratio = get_option("EWD_US_Mobile_Aspect_Ratio");
+$Hide_On_Mobile = get_option("EWD_US_Hide_On_Mobile");
+$Mobile_Link_To_Full = get_option("EWD_US_Mobile_Link_To_Full");
 $Title_Animate = get_option("EWD_US_Title_Animate");
 $Add_Watermark = get_option("EWD_US_Add_Watermark");
 $Lightbox = get_option("EWD_US_Lightbox");
@@ -226,55 +229,97 @@ $us_Arrow_Line_Height = get_option("EWD_us_Arrow_Line_Height");
 				<table class="form-table">
 					<tr>
 						<th scope="row">Slide Transition Effect</th>
-							<td>
-								<fieldset><legend class="screen-reader-text"><span>Slide Transition Effect</span></legend>
-									<label title='Default'><input type='radio' name='slide_transition_effect' value='slide' <?php if($Slide_Transition_Effect == "slide") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Default</span></label><br />
-									<label title='Fade'><input type='radio' name='slide_transition_effect' value='fade' <?php if($Slide_Transition_Effect  == "fade") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Fade</span></label><br />
-									<label title='SlideUp'><input type='radio' name='slide_transition_effect' value='slide-up' <?php if($Slide_Transition_Effect  == "slide-up") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide Up</span></label><br />
-									<label title='SlideDown'><input type='radio' name='slide_transition_effect' value='slide-down' <?php if($Slide_Transition_Effect  == "slide-down") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide Down</span></label><br />
-									<label title='StretchRight'><input type='radio' name='slide_transition_effect' value='stretch-right' <?php if($Slide_Transition_Effect  == "stretch-right") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Stretch Right</span></label><br />
-									<label title='StretchLeft'><input type='radio' name='slide_transition_effect' value='stretch-left' <?php if($Slide_Transition_Effect  == "stretch-left") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Stretch Left</span></label><br />
-									<label title='Grow'><input type='radio' name='slide_transition_effect' value='grow' <?php if($Slide_Transition_Effect  == "grow") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Grow</span></label><br />
-									<label title='Expand'><input type='radio' name='slide_transition_effect' value='expand' <?php if($Slide_Transition_Effect  == "expand") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Expand</span></label><br />
-									<p>Which effect should be used to transition between slides?</p>
-								</fieldset>
-							</td>
-						</tr>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Slide Transition Effect</span></legend>
+								<label title='Default'><input type='radio' name='slide_transition_effect' value='slide' <?php if($Slide_Transition_Effect == "slide") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Default</span></label><br />
+								<label title='Fade'><input type='radio' name='slide_transition_effect' value='fade' <?php if($Slide_Transition_Effect  == "fade") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Fade</span></label><br />
+								<label title='SlideUp'><input type='radio' name='slide_transition_effect' value='slide-up' <?php if($Slide_Transition_Effect  == "slide-up") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide Up</span></label><br />
+								<label title='SlideDown'><input type='radio' name='slide_transition_effect' value='slide-down' <?php if($Slide_Transition_Effect  == "slide-down") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide Down</span></label><br />
+								<label title='StretchRight'><input type='radio' name='slide_transition_effect' value='stretch-right' <?php if($Slide_Transition_Effect  == "stretch-right") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Stretch Right</span></label><br />
+								<label title='StretchLeft'><input type='radio' name='slide_transition_effect' value='stretch-left' <?php if($Slide_Transition_Effect  == "stretch-left") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Stretch Left</span></label><br />
+								<label title='Grow'><input type='radio' name='slide_transition_effect' value='grow' <?php if($Slide_Transition_Effect  == "grow") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Grow</span></label><br />
+								<label title='Expand'><input type='radio' name='slide_transition_effect' value='expand' <?php if($Slide_Transition_Effect  == "expand") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Expand</span></label><br />
+								<p>Which effect should be used to transition between slides?</p>
+							</fieldset>
+						</td>
+					</tr>
 
-						<tr>
-							<th scope="row">Title Animation</th>
-							<td>
-								<fieldset><legend class="screen-reader-text"><span>Title Animation</span></legend>
-									<label title='None'><input type='radio' name='title_animate' value='None' <?php if($Title_Animate == "None") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>None</span></label><br />
-									<label title='SlideFromLeft'><input type='radio' name='title_animate' value='SlideFromLeft' <?php if($Title_Animate == "SlideFromLeft") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide From Left</span></label><br />
-									<label title='SlideFromRight'><input type='radio' name='title_animate' value='SlideFromRight' <?php if($Title_Animate == "SlideFromRight") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide From Right</span></label><br />
-									<label title='FadeIn'><input type='radio' name='title_animate' value='FadeIn' <?php if($Title_Animate == "FadeIn") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Fade In</span></label><br />
-									<label title='ScrollDown'><input type='radio' name='title_animate' value='ScrollDown' <?php if($Title_Animate == "ScrollDown") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Scroll Down</span></label><br />
-								</fieldset>
-							</td>
-						</tr>
+					<tr>
+						<th scope="row">Mobile Aspect Ratio</th>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Mobile Aspect Ratio</span></legend>
+								<select name="mobile_aspect_ratio">
+							  		<option value="3_1" <?php if($Mobile_Aspect_Ratio == "3_1") {echo "selected=selected";} ?> >3:1</option>
+							  		<option value="16_7" <?php if($Mobile_Aspect_Ratio == "16_7") {echo "selected=selected";} ?> >16:7 (default)</option>
+									<option value="2_1" <?php if($Mobile_Aspect_Ratio == "2_1") {echo "selected=selected";} ?> >2:1</option>
+							  		<option value="16_9" <?php if($Mobile_Aspect_Ratio == "16_9") {echo "selected=selected";} ?> >16:9</option>
+							  		<option value="3_2" <?php if($Mobile_Aspect_Ratio == "3_2") {echo "selected=selected";} ?> >3:2</option>
+							  		<option value="4_3" <?php if($Mobile_Aspect_Ratio == "4_3") {echo "selected=selected";} ?> >4:3</option>
+							  		<option value="1_1" <?php if($Mobile_Aspect_Ratio == "1_1") {echo "selected=selected";} ?> >1:1</option>
+								</select>
+								<p>What should the aspect ratio of the slider be on smaller screens?</p>
+							</fieldset>
+						</td>
+					</tr>
 
-						<tr>
+					<tr>
+						<th scope="row">Hide Elements from Mobile View</th>
+						<td>
+						    <fieldset><legend class="screen-reader-text"><span>Hide Elements from Mobile View</span></legend>
+						        <label title='title'><input type='checkbox' name='hide_on_mobile[]' value='title' <?php if(in_array("title", $Hide_On_Mobile)) {echo "checked='checked'";} ?> /> <span>Title</span></label><br />
+						        <label title='body'><input type='checkbox' name='hide_on_mobile[]' value='body' <?php if(in_array("body", $Hide_On_Mobile)) {echo "checked='checked'";} ?> /> <span>Body</span></label><br />
+						        <label title='buttons'><input type='checkbox' name='hide_on_mobile[]' value='buttons' <?php if(in_array("buttons", $Hide_On_Mobile)) {echo "checked='checked'";} ?> /> <span>Buttons</span></label><br />
+						        <label title='arrows'><input type='checkbox' name='hide_on_mobile[]' value='arrows' <?php if(in_array("arrows", $Hide_On_Mobile)) {echo "checked='checked'";} ?> /> <span>Arrows</span></label><br />
+						        <label title='thumbnails'><input type='checkbox' name='hide_on_mobile[]' value='thumbnails' <?php if(in_array("thumbnails", $Hide_On_Mobile)) {echo "checked='checked'";} ?> /> <span>Thumbnails</span></label><br />
+						    </fieldset>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">Mobile Link to Full Post?</th>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Mobile Link to Full Post</span></legend>
+								<label title='Yes'><input type='radio' name='mobile_link_to_full' value='Yes' <?php if($Mobile_Link_To_Full == "Yes") {echo "checked='checked'";} ?> /> <span>Yes</span></label><br />
+								<label title='No'><input type='radio' name='mobile_link_to_full' value='No' <?php if($Mobile_Link_To_Full  == "No") {echo "checked='checked'";} ?> /> <span>No</span></label><br />
+							</fieldset>
+						</td>
+						<p>Should clicking on a slide bring up the individual slide post on mobile?</p>
+					</tr>
+
+					<tr>
+						<th scope="row">Title Animation</th>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Title Animation</span></legend>
+								<label title='None'><input type='radio' name='title_animate' value='None' <?php if($Title_Animate == "None") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>None</span></label><br />
+								<label title='SlideFromLeft'><input type='radio' name='title_animate' value='SlideFromLeft' <?php if($Title_Animate == "SlideFromLeft") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide From Left</span></label><br />
+								<label title='SlideFromRight'><input type='radio' name='title_animate' value='SlideFromRight' <?php if($Title_Animate == "SlideFromRight") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Slide From Right</span></label><br />
+								<label title='FadeIn'><input type='radio' name='title_animate' value='FadeIn' <?php if($Title_Animate == "FadeIn") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Fade In</span></label><br />
+								<label title='ScrollDown'><input type='radio' name='title_animate' value='ScrollDown' <?php if($Title_Animate == "ScrollDown") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Scroll Down</span></label><br />
+							</fieldset>
+						</td>
+					</tr>
+
+					<tr>
 						<th scope="row">Add Watermark</th>
-							<td>
-								<fieldset><legend class="screen-reader-text"><span>Add Watermark</span></legend>
-								<label title='Yes'><input type='radio' name='add_watermark' value='Yes' <?php if($Add_Watermark == "Yes") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
-								<label title='No'><input type='radio' name='add_watermark' value='No' <?php if($Add_Watermark == "No") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
-								<p>Should a watermark be added to each image? Requires GD PHP module to be installed on your server.</p>
-								</fieldset>
-							</td>
-						</tr>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Add Watermark</span></legend>
+							<label title='Yes'><input type='radio' name='add_watermark' value='Yes' <?php if($Add_Watermark == "Yes") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+							<label title='No'><input type='radio' name='add_watermark' value='No' <?php if($Add_Watermark == "No") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+							<p>Should a watermark be added to each image? Requires GD PHP module to be installed on your server.</p>
+							</fieldset>
+						</td>
+					</tr>
 
-						<tr>
+					<tr>
 						<th scope="row">Lightbox on Image Click</th>
-							<td>
-								<fieldset><legend class="screen-reader-text"><span>Lightbox on Image Click</span></legend>
-								<label title='Yes'><input type='radio' name='lightbox' value='Yes' <?php if($Lightbox == "Yes") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
-								<label title='No'><input type='radio' name='lightbox' value='No' <?php if($Lightbox == "No") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
-								<p>Should a lightbox be opened when an image is clicked on? Particularly useful if you're using carousel mode.</p>
-								</fieldset>
-							</td>
-						</tr>
+						<td>
+							<fieldset><legend class="screen-reader-text"><span>Lightbox on Image Click</span></legend>
+							<label title='Yes'><input type='radio' name='lightbox' value='Yes' <?php if($Lightbox == "Yes") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>Yes</span></label><br />
+							<label title='No'><input type='radio' name='lightbox' value='No' <?php if($Lightbox == "No") {echo "checked='checked'";} ?> <?php if ($US_Full_Version != "Yes") {echo "disabled";} ?> /> <span>No</span></label><br />
+							<p>Should a lightbox be opened when an image is clicked on? Particularly useful if you're using carousel mode.</p>
+							</fieldset>
+						</td>
+					</tr>
 
 				</table>
 			</div>

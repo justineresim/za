@@ -4,6 +4,8 @@
 
 function EWD_US_UpdateOptions() {
 global $US_Full_Version;
+	
+	if (isset($_POST['Options_Submit']) and (!isset($_POST['hide_on_mobile']) or !is_array($_POST['hide_on_mobile']))) {$_POST['hide_on_mobile'] = array();}
 
 	if (isset($_POST['custom_css'])) {update_option('EWD_US_Custom_CSS', stripslashes_deep($_POST['custom_css']));}
 	if (isset($_POST['slider-autoplay'])) {update_option('EWD_US_Autoplay_Slideshow', stripslashes_deep($_POST['slider-autoplay']));}
@@ -21,6 +23,9 @@ global $US_Full_Version;
 	if (isset($_POST['link_action'])) {update_option('EWD_US_Link_Action', stripslashes_deep($_POST['link_action']));}
 
 	if (isset($_POST['slide_transition_effect']) and $US_Full_Version == "Yes") {update_option('EWD_US_Slide_Transition_Effect', stripslashes_deep($_POST['slide_transition_effect']));}
+	if (isset($_POST['mobile_aspect_ratio']) and $US_Full_Version == "Yes") {update_option('EWD_US_Mobile_Aspect_Ratio', $_POST['mobile_aspect_ratio']);}
+	if (isset($_POST['hide_on_mobile']) and $US_Full_Version == "Yes") {update_option('EWD_US_Hide_On_Mobile', $_POST['hide_on_mobile']);}
+	if (isset($_POST['mobile_link_to_full']) and $US_Full_Version == "Yes") {update_option('EWD_US_Mobile_Link_To_Full', $_POST['mobile_link_to_full']);}
 	if (isset($_POST['title_animate']) and $US_Full_Version == "Yes") {update_option('EWD_US_Title_Animate', stripslashes_deep($_POST['title_animate']));}
 	if (isset($_POST['add_watermark']) and $US_Full_Version == "Yes") {update_option('EWD_US_Add_Watermark', stripslashes_deep($_POST['add_watermark']));}
 	if (isset($_POST['lightbox']) and $US_Full_Version == "Yes") {update_option('EWD_US_Lightbox', stripslashes_deep($_POST['lightbox']));}

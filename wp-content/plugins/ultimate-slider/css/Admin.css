@@ -278,6 +278,23 @@ margin:3px;
 }
 
 
+
+/*
+==============================================
+Admin Table
+==============================================
+*/
+.ewd-us-admin-table-thumbnail {
+  width: 100px;
+  height: auto;
+  padding: 2px;
+}
+th.column-us_thumbnail {
+  width: 136px;
+}
+
+
+
 /*
 ==============================================
 Arrow Font
